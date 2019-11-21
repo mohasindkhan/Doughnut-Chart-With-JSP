@@ -1,0 +1,83 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	
+	<title> Dynamic Chart </title>
+	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Chart.min.css">
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"> </script>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Chart.min.js"> </script>
+	
+	<style>
+	
+		#doughnutChart
+		{
+			height: 500px !important;
+			width: 500px !important; 
+		}
+	
+	</style>
+	
+</head>
+
+<body>
+
+<div> 
+	<!-- <button onClick="myData()"> GET DATA </button> -->
+</div>
+
+<div class="container"> 
+	<h1> DOUGHNUT CHART USING CHART.JS </h1> <hr />
+	
+	<canvas id="doughnutChart"> </canvas>
+</div>
+
+<div id="caseData"> </div>
+
+<script>
+
+$(document).ready(function()
+{
+	$.ajax
+	({
+		url: "FetchRecords.jsp",
+		type: "GET",
+		success:function(data)
+		{
+			//console.log(data);
+			
+			var a = JSON.parse(data);
+			console.log(a);
+			
+			var caseStatusData = [];
+			
+			for(var i=0; i<a.length; i++)
+			{
+				console.log(a[i].caseStatus);
+				//caseStatusData.push(a[i].caseStatus);	
+			}
+			
+		}
+		
+		
+	});
+	
+});
+
+</script>
+
+</body>
+
+</html>
